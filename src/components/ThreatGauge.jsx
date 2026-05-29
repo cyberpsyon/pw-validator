@@ -35,13 +35,13 @@ export function ThreatGauge({ crackSeconds, crackTime }) {
         </span>
       </div>
 
-      <div className="gauge-track">
+      <div className="gauge-track" key={active}>
         {SEGMENTS.map((seg, i) => (
           <div
             key={seg.label}
             className="gauge-seg"
             title={seg.label}
-            style={{ background: seg.color, opacity: i <= active ? 1 : 0.11 }}
+            style={{ background: seg.color, opacity: i <= active ? 1 : 0.11, '--seg-i': i }}
           />
         ))}
       </div>

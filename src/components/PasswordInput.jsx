@@ -1,11 +1,7 @@
 import { useState } from 'react';
 
-export function PasswordInput({ value, onChange, onValidate, disabled }) {
+export function PasswordInput({ value, onChange }) {
   const [reveal, setReveal] = useState(false);
-
-  function handleKeyDown(e) {
-    if (e.key === 'Enter') onValidate();
-  }
 
   return (
     <div className="password-input">
@@ -23,7 +19,6 @@ export function PasswordInput({ value, onChange, onValidate, disabled }) {
           spellCheck="false"
           placeholder="Enter a password to analyze"
           onChange={e => onChange(e.target.value)}
-          onKeyDown={handleKeyDown}
         />
         <button
           type="button"
@@ -35,20 +30,10 @@ export function PasswordInput({ value, onChange, onValidate, disabled }) {
         </button>
       </div>
 
-      {/* Alternating disclaimer — carries over from the Streamlit version */}
       <div className="disclaimer-wrap">
         <span className="pv-left">YOUR PASSWORD IS NEVER SENT TO ANY SERVER OR STORED.</span>
         <span className="pv-right">CHECK YOUR SURROUNDINGS BEFORE REVEALING YOUR PASSWORD.</span>
       </div>
-
-      <button
-        type="button"
-        className="validate-btn"
-        onClick={onValidate}
-        disabled={disabled || !value}
-      >
-        Analyze
-      </button>
     </div>
   );
 }

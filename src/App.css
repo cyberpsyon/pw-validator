@@ -371,3 +371,37 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
   .policy-header { display: none; }
   .attack-row { grid-template-columns: 1fr; gap: 2px; }
 }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ====================== Empty state ====================== */
+.empty-state { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 24px 0 8px; text-align: center; }
+.ghost-enso { animation: ghostBreath 6s ease-in-out infinite; }
+@keyframes ghostBreath { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+.empty-invite { font-family: var(--font-display); font-size: 1.05rem; color: var(--washi-dim); }
+.empty-examples { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; }
+.empty-examples-label { font-size: 0.72rem; color: var(--washi-dim); }
+.example-chip {
+  background: transparent; border: 1px solid var(--border2); color: var(--washi);
+  font-size: 0.74rem; letter-spacing: 0.04em; padding: 6px 12px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.example-chip:hover { border-color: var(--vermilion); color: var(--vermilion); }
+@media (prefers-reduced-motion: reduce) { .ghost-enso { animation: none; opacity: 0.7; } }
+
+/* ====================== Results reveal ====================== */
+.results { display: flex; flex-direction: column; gap: 48px; }
+.results-reveal > * { animation: revealUp 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) both; }
+.results-reveal > *:nth-child(1) { animation-delay: 0ms; }
+.results-reveal > *:nth-child(2) { animation-delay: 60ms; }
+.results-reveal > *:nth-child(3) { animation-delay: 120ms; }
+.results-reveal > *:nth-child(4) { animation-delay: 180ms; }
+.results-reveal > *:nth-child(5) { animation-delay: 240ms; }
+.results-reveal > *:nth-child(6) { animation-delay: 300ms; }
+.results-reveal > *:nth-child(n+7) { animation-delay: 360ms; }
+@keyframes revealUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .results-reveal > * { animation: none; } }
+
+.gauge-track .gauge-seg { animation: segIn 0.45s ease both; animation-delay: calc(var(--seg-i) * 55ms); }
+@keyframes segIn { from { opacity: 0; transform: scaleY(0.4); } }
+@media (prefers-reduced-motion: reduce) { .gauge-track .gauge-seg { animation: none; } }

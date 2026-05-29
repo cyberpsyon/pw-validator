@@ -1,10 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../App.css';
 
-import { fullValidate } from '../lib/validator.js';
-import { checkHIBP } from '../lib/hibp.js';
-
+import { useLiveValidation } from '../hooks/useLiveValidation.js';
 import { PasswordInput } from './PasswordInput.jsx';
+import { EmptyState } from './EmptyState.jsx';
 import { ScoreDisplay } from './ScoreDisplay.jsx';
 import { ThreatGauge } from './ThreatGauge.jsx';
 import { RuleAnalysis } from './RuleAnalysis.jsx';
@@ -19,56 +18,31 @@ import { ScoringExplainer } from './ScoringExplainer.jsx';
 
 export default function App() {
   const [password, setPassword] = useState('');
-  const [phase, setPhase] = useState('idle'); // idle | checking | done
-  const [result, setResult] = useState(null);
+  const { result, phase, isEmpty } = useLiveValidation(password);
 
-  // Monotonic token: each handleValidate run claims an id, and any async
-  // resolution belonging to a superseded run is ignored. Prevents a slow
-  // HIBP fetch from overwriting state after the input has changed.
-  const runIdRef = useRef(0);
-
-  function handleChange(value) {
-    setPassword(value);
-    // Invalidate any in-flight run and clear stale analysis on input change.
-    runIdRef.current += 1;
-    if (result) setResult(null);
-    if (phase !== 'idle') setPhase('idle');
-  }
-
-  async function handleValidate() {
-    if (!password) return;
-    const runId = ++runIdRef.current;
-    setPhase('checking');
-
-    // Phase 1: sync validation with the breach check still pending — shown
-    // immediately so the user sees everything except the breach result.
-    setResult(fullValidate(password, { pending: true }));
-
-    // Phase 2: run the HIBP check, then re-validate with the real count.
-    const hibpResult = await checkHIBP(password);
-    if (runId !== runIdRef.current) return; // superseded
-    setResult(fullValidate(password, hibpResult));
-    setPhase('done');
-  }
+  // One-time reveal when transitioning empty -> active.
+  const [revealed, setRevealed] = useState(false);
+  const wasEmpty = useRef(true);
+  useEffect(() => {
+    const prev = wasEmpty.current;
+    wasEmpty.current = isEmpty;
+    if (prev && !isEmpty) setTimeout(() => setRevealed(true), 0);
+    if (isEmpty) setTimeout(() => setRevealed(false), 0);
+  }, [isEmpty]);
 
   return (
     <div className="container">
       <header className="app-header">
         <h1 className="app-title">Password Validator</h1>
-        <p className="app-tagline">
-          Strength analysis that never leaves your device.
-        </p>
+        <p className="app-tagline">Strength analysis that never leaves your device.</p>
       </header>
 
-      <PasswordInput
-        value={password}
-        onChange={handleChange}
-        onValidate={handleValidate}
-        disabled={phase === 'checking'}
-      />
+      <PasswordInput value={password} onChange={setPassword} />
+
+      {isEmpty && <EmptyState onPick={setPassword} />}
 
       {result && (
-        <>
+        <div className={revealed ? 'results results-reveal' : 'results'}>
           <ScoreDisplay result={result} phase={phase} />
 
           {result.hibpUnavailable && (
@@ -82,29 +56,23 @@ export default function App() {
           <RuleAnalysis result={result} phase={phase} />
           <Recommendations result={result} />
 
-          <div className="deep-divider">
-            <span>Deep analysis</span>
-          </div>
+          <div className="deep-divider"><span>Deep analysis</span></div>
 
           <AttackBreakdown sequence={result.attackSequence} />
           <PolicyCompliance result={result} />
           <ShareCard result={result} />
-        </>
+        </div>
       )}
 
-      <GeneratorPanel onUse={handleChange} />
-      <PassphrasePanel onUse={handleChange} />
+      <GeneratorPanel onUse={setPassword} />
+      <PassphrasePanel onUse={setPassword} />
 
       <ScoringExplainer />
       <SafetyTips />
 
       <footer className="app-footer">
         BUILT BY BEN MICKENS ·{' '}
-        <a
-          href="https://github.com/cyberpsyon/password-validator"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href="https://github.com/cyberpsyon/password-validator" target="_blank" rel="noreferrer">
           [ SOURCE: GITHUB ]
         </a>
       </footer>

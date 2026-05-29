@@ -1,5 +1,7 @@
 import { EnsoCircle } from './EnsoCircle.jsx';
 import { crackTimeTier, breachTier, lengthTier, formatBreachCount } from '../lib/validator.js';
+import { useTween } from '../hooks/useTween.js';
+import { useReducedMotion } from '../hooks/useReducedMotion.js';
 
 function capitalize(s) {
   if (!s) return '—';
@@ -7,6 +9,8 @@ function capitalize(s) {
 }
 
 export function ScoreDisplay({ result, phase }) {
+  const reduced = useReducedMotion();
+  const animatedScore = Math.round(useTween(result?.score ?? 0, 700, !reduced));
   if (!result) return null;
   const checking = phase === 'checking' || result.hibpPending;
 
@@ -30,7 +34,7 @@ export function ScoreDisplay({ result, phase }) {
   return (
     <section className="score-display">
       <div className="enso-holder">
-        <EnsoCircle score={result.score} rating={result.rating} />
+        <EnsoCircle score={animatedScore} rating={result.rating} />
       </div>
 
       <div className="score-breakdown">
@@ -44,6 +48,9 @@ export function ScoreDisplay({ result, phase }) {
           </div>
         ))}
       </div>
+      <span className="sr-only" aria-live="polite">
+        Score {result.score} of {result.maxScore}, rating {result.rating}
+      </span>
     </section>
   );
 }
