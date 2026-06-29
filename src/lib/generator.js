@@ -1,4 +1,4 @@
-import { SPECIAL_CHARS } from './validator.js';
+import { SPECIAL_CHARS } from './validator-core.js';
 import { EFF_WORDLIST } from './eff_wordlist.js';
 
 const UPPER   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { generatePassword } from '../lib/generator.js';
-import { MIN_LENGTH, MAX_LENGTH } from '../lib/validator.js';
+import { MIN_LENGTH, MAX_LENGTH } from '../lib/validator-core.js';
 
 const TOGGLES = [
   { key: 'useUpper',   label: 'Uppercase' },

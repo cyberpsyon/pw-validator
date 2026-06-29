@@ -1,5 +1,5 @@
 import { EnsoCircle } from './EnsoCircle.jsx';
-import { crackTimeTier, breachTier, lengthTier, formatBreachCount } from '../lib/validator.js';
+import { crackTimeTier, breachTier, lengthTier, formatBreachCount } from '../lib/validator-core.js';
 import { useTween } from '../hooks/useTween.js';
 import { useReducedMotion } from '../hooks/useReducedMotion.js';
 

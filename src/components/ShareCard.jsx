@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { downloadNodeAsPng } from '../lib/shareImage.js';
 
 // Update once the Cloudflare Pages URL is known (Step 11).
 const SITE_URL = 'pw-validator.pages.dev';
@@ -20,6 +21,7 @@ function CheckRow({ passed, text }) {
 }
 
 export function ShareCard({ result }) {
+  const cardRef = useRef(null);
   const [copied, setCopied] = useState(false);
   if (!result) return null;
 
@@ -53,7 +55,7 @@ export function ShareCard({ result }) {
 
   return (
     <section className="share-card">
-      <div className="share-report">
+      <div className="share-report" ref={cardRef}>
         <div className="share-bar">
           <span className="share-bar-title">Password Validator // Security Report</span>
           <span className="share-bar-date">{date}</span>
@@ -94,9 +96,14 @@ export function ShareCard({ result }) {
         </div>
       </div>
 
-      <button type="button" className="copy-btn" onClick={copy}>
-        {copied ? 'copied' : 'copy summary'}
-      </button>
+      <div className="share-actions">
+        <button type="button" className="copy-btn" onClick={copy}>
+          {copied ? 'copied' : 'copy summary'}
+        </button>
+        <button type="button" className="copy-btn" onClick={() => downloadNodeAsPng(cardRef.current)}>
+          download png
+        </button>
+      </div>
     </section>
   );
 }
