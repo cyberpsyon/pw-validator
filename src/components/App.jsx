@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import '../App.css';
-import { playReveal, playTick } from '../lib/sound.js';
 
 import { useLiveValidation } from '../hooks/useLiveValidation.js';
 import { PasswordInput } from './PasswordInput.jsx';
@@ -25,20 +24,12 @@ export default function App() {
   // One-time reveal when transitioning empty -> active.
   const [revealed, setRevealed] = useState(false);
   const wasEmpty = useRef(true);
-  const prevRating = useRef(null);
   useEffect(() => {
     const prev = wasEmpty.current;
     wasEmpty.current = isEmpty;
-    if (prev && !isEmpty) setTimeout(() => { setRevealed(true); playReveal(); }, 0);
+    if (prev && !isEmpty) setTimeout(() => { setRevealed(true); }, 0);
     if (isEmpty) setTimeout(() => setRevealed(false), 0);
   }, [isEmpty]);
-
-  useEffect(() => {
-    if (result && result.rating !== prevRating.current) {
-      if (prevRating.current !== null) playTick();
-      prevRating.current = result.rating;
-    }
-  }, [result]);
 
   return (
     <div className="container">

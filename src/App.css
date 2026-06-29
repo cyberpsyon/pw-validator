@@ -439,13 +439,15 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
 :root[data-theme="light"] { color-scheme: light; }
 
 /* ====================== Settings bar ====================== */
-.settings-bar { display: flex; justify-content: flex-end; gap: 10px; }
+.settings-bar { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
 .settings-btn {
   background: transparent; border: 1px solid var(--border2); color: var(--text-dim);
   font-size: 0.66rem; letter-spacing: 0.08em; padding: 6px 12px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 .settings-btn:hover, .settings-btn[aria-pressed="true"] { color: var(--mint); border-color: var(--mint); }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; padding: 5px 10px; }
+.theme-toggle svg { display: block; }
 
 /* ====================== Manual reduce-motion ====================== */
 /* Toggled via the in-app "motion" button (see motionPref.js); mirrors the
