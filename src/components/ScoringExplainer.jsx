@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // Content ported from render_scoring_panel() in app.py. Emphasis colors
-// adapted to the ensō palette (#F5A623 -> --vermilion, #00E676 -> --green).
+// adapted to the navy/mint palette (#F5A623 -> --mint, #00E676 -> --green).
 
 const POINT_BREAKDOWN = [
   ['Length (15+ characters)', '10'],

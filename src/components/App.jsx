@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import '../App.css';
+import { playReveal, playTick } from '../lib/sound.js';
 
 import { useLiveValidation } from '../hooks/useLiveValidation.js';
 import { PasswordInput } from './PasswordInput.jsx';
@@ -15,6 +16,7 @@ import { GeneratorPanel } from './GeneratorPanel.jsx';
 import { PassphrasePanel } from './PassphrasePanel.jsx';
 import { SafetyTips } from './SafetyTips.jsx';
 import { ScoringExplainer } from './ScoringExplainer.jsx';
+import { SettingsBar } from './SettingsBar.jsx';
 
 export default function App() {
   const [password, setPassword] = useState('');
@@ -23,18 +25,27 @@ export default function App() {
   // One-time reveal when transitioning empty -> active.
   const [revealed, setRevealed] = useState(false);
   const wasEmpty = useRef(true);
+  const prevRating = useRef(null);
   useEffect(() => {
     const prev = wasEmpty.current;
     wasEmpty.current = isEmpty;
-    if (prev && !isEmpty) setTimeout(() => setRevealed(true), 0);
+    if (prev && !isEmpty) setTimeout(() => { setRevealed(true); playReveal(); }, 0);
     if (isEmpty) setTimeout(() => setRevealed(false), 0);
   }, [isEmpty]);
 
+  useEffect(() => {
+    if (result && result.rating !== prevRating.current) {
+      if (prevRating.current !== null) playTick();
+      prevRating.current = result.rating;
+    }
+  }, [result]);
+
   return (
     <div className="container">
+      <SettingsBar />
       <header className="app-header">
-        <h1 className="app-title">Password Validator</h1>
-        <p className="app-tagline">Strength analysis that never leaves your device.</p>
+        <h1 className="app-title">How strong is your <span className="app-title-accent">password</span>?</h1>
+        <p className="app-tagline">An audit against 850M breached passwords and modern cracking benchmarks. No accounts, no logging, no storage.</p>
       </header>
 
       <PasswordInput value={password} onChange={setPassword} />
@@ -42,7 +53,7 @@ export default function App() {
       {isEmpty && <EmptyState onPick={setPassword} />}
 
       {result && (
-        <div className={revealed ? 'results results-reveal' : 'results'}>
+        <div className={revealed ? 'results results-reveal' : 'results'} aria-busy={phase === 'checking'}>
           <ScoreDisplay result={result} phase={phase} />
 
           {result.hibpUnavailable && (

@@ -9,7 +9,7 @@ export function EmptyState({ onPick }) {
     <div className="empty-state">
       <svg className="ghost-enso" viewBox="0 0 260 260" width="220" height="220" aria-hidden="true">
         <circle cx="130" cy="130" r="90" fill="none"
-          stroke="var(--washi-faint)" strokeWidth="26" strokeLinecap="round"
+          stroke="var(--text-faint)" strokeWidth="26" strokeLinecap="round"
           strokeDasharray="540 25" transform="rotate(-90 130 130)" />
       </svg>
       <p className="empty-invite">Type a password to see it come alive.</p>

@@ -4,12 +4,12 @@ const CIRCUMFERENCE = 565.5;
 
 export function EnsoCircle({ score, rating }) {
   const ratingColor = {
-    EXCELLENT: '#5C9E6E',
-    STRONG:    '#5C9E6E',
-    GOOD:      '#A89050',
-    FAIR:      '#B86B3A',
-    WEAK:      '#C44040',
-  }[rating] ?? 'rgba(232,223,211,0.15)';
+    EXCELLENT: '#3DDC97',
+    STRONG:    '#3DDC97',
+    GOOD:      '#FFB020',
+    FAIR:      '#FFB020',
+    WEAK:      '#FF5577',
+  }[rating] ?? 'var(--text-faint)';
 
   const dashOffset = CIRCUMFERENCE * (1 - (score ?? 0) / 100);
 
@@ -25,7 +25,7 @@ export function EnsoCircle({ score, rating }) {
       </defs>
       {/* Ghost ring */}
       <circle cx="130" cy="130" r="90" fill="none"
-        stroke="rgba(210,77,62,0.06)" strokeWidth="32"/>
+        stroke="var(--surface2)" strokeWidth="32"/>
       {/* Ensō stroke */}
       <circle cx="130" cy="130" r="90" fill="none"
         stroke={ratingColor}
@@ -39,8 +39,8 @@ export function EnsoCircle({ score, rating }) {
       />
       {/* Score label */}
       <text x="130" y="122" textAnchor="middle"
-        fontFamily="'Shippori Mincho', serif"
-        fontSize="44" fill="var(--washi)" fontWeight="700">
+        fontFamily="'Inter', sans-serif"
+        fontSize="44" fill="var(--text)" fontWeight="700">
         {score ?? '—'}
       </text>
       <text x="130" y="148" textAnchor="middle"

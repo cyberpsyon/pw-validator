@@ -61,7 +61,7 @@ Overrides only the tokens that differ; tier colors are deepened for text contras
 --mint:        #1EB87A;
 --mint-dim:    rgba(30,184,122,0.12);
 --mint-glow:   rgba(30,184,122,0.22);
---on-accent:   #FFFFFF;
+--on-accent:   #0A1220;   /* dark text on mint — WCAG AA (~8:1); white failed at ~2.5:1 */
 
 --text:        #0A1220;
 --text-dim:    #5B6472;

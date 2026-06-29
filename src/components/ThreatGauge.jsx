@@ -1,5 +1,5 @@
 // Segmented crack-time gauge. Thresholds & labels mirror _GAUGE_SEGMENTS.
-// Colors adapted to the ensō palette (real app: red/orange/yellow/green/teal).
+// Colors are theme tokens (--red/--orange/--yellow/--green/--teal) from App.css.
 const SEGMENTS = [
   { threshold: 0,          label: 'Instant',   color: 'var(--red)' },
   { threshold: 60,         label: 'Minutes',   color: 'var(--red)' },
