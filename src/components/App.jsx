@@ -83,7 +83,7 @@ export default function App() {
 
       <footer className="app-footer">
         BUILT BY BEN MICKENS ·{' '}
-        <a href="https://github.com/cyberpsyon/password-validator" target="_blank" rel="noreferrer">
+        <a href="https://github.com/cyberpsyon/pw-validator" target="_blank" rel="noreferrer">
           [ SOURCE: GITHUB ]
         </a>
       </footer>
