@@ -12,7 +12,6 @@ import { AttackBreakdown } from './AttackBreakdown.jsx';
 import { PolicyCompliance } from './PolicyCompliance.jsx';
 import { ShareCard } from './ShareCard.jsx';
 import { GeneratorPanel } from './GeneratorPanel.jsx';
-import { PassphrasePanel } from './PassphrasePanel.jsx';
 import { SafetyTips } from './SafetyTips.jsx';
 import { ScoringExplainer } from './ScoringExplainer.jsx';
 import { SettingsBar } from './SettingsBar.jsx';
@@ -67,7 +66,6 @@ export default function App() {
       )}
 
       <GeneratorPanel onUse={setPassword} />
-      <PassphrasePanel onUse={setPassword} />
 
       <ScoringExplainer />
       <SafetyTips />

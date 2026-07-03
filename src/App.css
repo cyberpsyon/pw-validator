@@ -151,7 +151,7 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
   letter-spacing: 0.06em;
   padding: 0 14px;
 }
-.reveal-btn:hover { color: var(--text); }
+.reveal-btn:hover { color: var(--mint); border-color: var(--mint); }
 .reveal-btn[aria-pressed="true"] { color: var(--mint); }
 .validate-btn {
   align-self: flex-start;
@@ -284,9 +284,18 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
 .rating-WEAK { color: var(--red); }
 .rating-tag { display: inline-block; border: 1px solid currentColor; padding: 1px 8px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; }
 
-/* ====================== Generator / passphrase ====================== */
-.generator-panel, .passphrase-panel { display: flex; flex-direction: column; gap: 16px; }
+/* ====================== Generator ====================== */
+.generator-panel { display: flex; flex-direction: column; gap: 16px; }
 .section-heading { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; color: var(--text); }
+.gen-mode { display: inline-flex; gap: 8px; }
+.gen-mode-btn {
+  background: transparent; border: 1px solid var(--border2); color: var(--text-dim);
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  padding: 7px 16px; border-radius: 999px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.gen-mode-btn:hover { color: var(--mint); border-color: var(--mint); }
+.gen-mode-btn[aria-selected="true"] { color: var(--on-accent); background: var(--mint); border-color: var(--mint); }
 .gen-controls { display: flex; flex-direction: column; gap: 16px; }
 .gen-length, .gen-sep { display: flex; align-items: center; gap: 12px; font-size: 0.75rem; color: var(--text-dim); }
 .gen-length input[type="range"] { flex: 1; accent-color: var(--mint); }
@@ -303,7 +312,7 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
   font-size: 0.72rem; letter-spacing: 0.08em; padding: 10px 18px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.copy-btn:hover { color: var(--text); border-color: var(--text-dim); }
+.copy-btn:hover { color: var(--mint); border-color: var(--mint); }
 
 /* ====================== Disclosure panels ====================== */
 .safety-tips, .scoring-explainer { display: flex; flex-direction: column; gap: 12px; }
