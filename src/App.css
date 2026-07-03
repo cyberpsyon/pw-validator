@@ -371,6 +371,12 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
   position: absolute; width: 100%; left: 0;
   font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.1em; font-family: var(--font-mono);
 }
+/* Reduced-motion: the two lines can't cross-fade, so stack them both statically. */
+@media (prefers-reduced-motion: reduce) {
+  .pv-left, .pv-right { animation: none; }
+  .disclaimer-wrap { position: static; height: auto; }
+  .disclaimer-wrap span { position: static; display: block; opacity: 1; }
+}
 
 /* ====================== Mobile ====================== */
 @media (max-width: 480px) {
@@ -457,14 +463,6 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
 .settings-btn:hover, .settings-btn[aria-pressed="true"] { color: var(--mint); border-color: var(--mint); }
 .theme-toggle { display: inline-flex; align-items: center; justify-content: center; padding: 5px 10px; }
 .theme-toggle svg { display: block; }
-
-/* ====================== Manual reduce-motion ====================== */
-/* Toggled via the in-app "motion" button (see motionPref.js); mirrors the
-   prefers-reduced-motion media query for users who opt out in-app. */
-.force-reduce-motion *, .force-reduce-motion *::before, .force-reduce-motion *::after {
-  animation: none !important;
-  transition: none !important;
-}
 
 /* ====================== Rebrand shape overrides ====================== */
 .pw-field      { border-radius: 6px 0 0 6px; }
