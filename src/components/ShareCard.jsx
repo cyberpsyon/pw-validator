@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import { downloadNodeAsPng } from '../lib/shareImage.js';
 
-// Update once the Cloudflare Pages URL is known (Step 11).
-const SITE_URL = 'pw-validator.pages.dev';
+const SITE_URL = 'password.cyberpsyon.com';
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
