@@ -4,8 +4,8 @@ const CIRCUMFERENCE = 565.5;
 
 export function EnsoCircle({ score, rating }) {
   const ratingColor = {
-    EXCELLENT: '#3DDC97',
-    STRONG:    '#3DDC97',
+    EXCELLENT: 'var(--green)',
+    STRONG:    'var(--green)',
     GOOD:      '#FFB020',
     FAIR:      '#FFB020',
     WEAK:      '#FF5577',

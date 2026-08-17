@@ -13,16 +13,16 @@
   --border:         rgba(255,255,255,0.06);
   --border2:        rgba(255,255,255,0.10);
 
-  --mint:           #3DDC97;
-  --mint-dim:       rgba(61,220,151,0.10);
-  --mint-glow:      rgba(61,220,151,0.25);
+  --mint:           #25C2A0;
+  --mint-dim:       rgba(37,194,160,0.10);
+  --mint-glow:      rgba(37,194,160,0.25);
   --on-accent:      #0A1220;
 
   --text:           #E8EDF4;
   --text-dim:       #8A93A6;
   --text-faint:     rgba(255,255,255,0.16);
 
-  --green:   #3DDC97;
+  --green:   #25C2A0;
   --red:     #FF5577;
   --orange:  #FF6D00;
   --yellow:  #FFB020;
@@ -333,7 +333,7 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
 .explainer-body strong { color: var(--mint); font-weight: 700; }
 .explainer-body .emph-green { color: var(--green); font-weight: 700; }
 .explainer-body .emph-red { color: var(--red); font-weight: 700; }
-.explainer-code { color: var(--green); background: rgba(61,220,151,0.08); padding: 1px 6px; font-family: var(--font-mono); font-size: 0.78rem; }
+.explainer-code { color: var(--green); background: rgba(37,194,160,0.08); padding: 1px 6px; font-family: var(--font-mono); font-size: 0.78rem; }
 .explainer-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; }
 .explainer-table th { text-align: left; font-weight: 700; color: var(--text-dim); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 10px; border-bottom: 1px solid var(--border2); }
 .explainer-table td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
@@ -430,16 +430,16 @@ input, select { border-radius: 0; font-family: var(--font-mono); }
   --border:      rgba(0,0,0,0.08);
   --border2:     rgba(0,0,0,0.14);
 
-  --mint:        #1EB87A;
-  --mint-dim:    rgba(30,184,122,0.12);
-  --mint-glow:   rgba(30,184,122,0.22);
+  --mint:        #1A8870;
+  --mint-dim:    rgba(26,136,112,0.12);
+  --mint-glow:   rgba(26,136,112,0.22);
   --on-accent:   #0A1220;
 
   --text:        #0A1220;
   --text-dim:    #5B6472;
   --text-faint:  rgba(10,18,32,0.20);
 
-  --green:  #1EB87A;
+  --green:  #1A8870;
   --red:    #DC2626;
   --orange: #EA580C;
   --yellow: #D97706;
