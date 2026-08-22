@@ -1,18 +1,18 @@
 # Password Validator
 
-A real-time password strength auditor that checks your password against 850M+ breached passwords and modern cracking benchmarks — entirely in your browser. No accounts, no logging, no storage.
+A real-time password strength auditor that scores passwords against 850M+ breached passwords and modern cracking benchmarks — entirely in your browser. Don't type a password you actually use anywhere: test one like it instead — same length, same mix of characters. No accounts, no logging, no storage.
 
 **Live at [password.cyberpsyon.com](https://password.cyberpsyon.com)**
 
 ## Features
 
 - **Live scoring as you type** — a 0–100 score with an ensō ring that completes as strength climbs, rated WEAK → FAIR → GOOD → STRONG → EXCELLENT
-- **Breach database check** — queries the [Have I Been Pwned](https://haveibeenpwned.com/Passwords) Pwned Passwords API using k-anonymity: only the first 5 characters of a SHA-1 hash ever leave your browser, so the password itself is never transmitted
+- **Breach database check** — queries the [Have I Been Pwned](https://haveibeenpwned.com/Passwords) Pwned Passwords API using k-anonymity: only the first 5 characters of a SHA-1 hash ever leave your browser, so the password itself is never transmitted. Note: the breach check matches exact strings, so it only applies to the password actually tested — a lookalike won't tell you whether your real password is breached
 - **Crack-time estimation** — powered by [zxcvbn](https://github.com/dropbox/zxcvbn), modeling an offline attack against bcrypt at 10,000 guesses/second, with entropy (bits) and raw guess counts
 - **Attack sequence breakdown** — shows exactly how a cracker would decompose your password (dictionary words, keyboard patterns, dates, sequences, l33t substitutions)
 - **Rule analysis & recommendations** — pass/fail on each scoring rule with concrete suggestions for improvement
 - **Policy compliance** — compares your password against a typical legacy corporate policy and NIST SP 800-63B, side by side
-- **Password & passphrase generator** — CSPRNG-backed (rejection sampling, no modulo bias). Toggle between random passwords (configurable length and character sets) and EFF-wordlist passphrases (configurable word count, separator, and l33t substitutions)
+- **Password & passphrase generator** — CSPRNG-backed (rejection sampling, no modulo bias). Toggle between random passwords (configurable length and character sets) and EFF-wordlist passphrases (configurable word count, separator, and l33t substitutions). Generated passwords are created locally and never transmitted, so they're safe to audit and then adopt for real use
 - **Shareable score card** — export a PNG of your results (score only, never the password) to challenge others
 - **Scoring explainer & safety tips** — full transparency on how every point is earned
 - **Dark/light theme** and `prefers-reduced-motion` support
