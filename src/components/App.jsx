@@ -35,7 +35,7 @@ export default function App() {
       <SettingsBar />
       <header className="app-header">
         <h1 className="app-title">How strong is your <span className="app-title-accent">password</span>?</h1>
-        <p className="app-tagline">An audit against 850M breached passwords and modern cracking benchmarks. Test a password like yours — same length, same mix — no need to enter one you actually use. No accounts, no logging, no storage.</p>
+        <p className="app-tagline">An audit against 850M breached passwords and modern cracking benchmarks. Type your real password — it never leaves this page, and the breach check sends only a 5-character hash prefix shared by hundreds of passwords. No accounts, no logging, no storage.</p>
       </header>
 
       <PasswordInput value={password} onChange={setPassword} />
